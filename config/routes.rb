@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :images
   resources :reviews
   resources :bookings
   resources :boat_categories
