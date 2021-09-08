@@ -27,15 +27,22 @@ class BoatsController < ApplicationController
         head :no_content
     end
 
+    def bounds 
+        boats = Boat.search(search_params.to_h.symbolize_keys)
+        render json: boats
+    end
 
-
+      
     private
-
+      
     def find_boat
         Boat.find(params[:id])
     end
-
-
+    
+    
+    def search_params
+      params.permit(:min_lng, :max_lng, :min_lat, :max_lat)
+    end
 
     def boat_params
         params.permit(:title, :description, :price, :make, :model, :year, :length, :passengers, :crew, :bed, :sleep, :sailboat, :tender, :alcohol, :food, :extras, :location, :fuel, :lat, :long)
